@@ -1,35 +1,32 @@
 import React, { Component } from 'react';
-import Equipe from './Equipe';
+import Contador from './Contador';
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			devs: [
-				{
-					nome: 'Daniel Silva',
-					cargo: 'Desenvolvedor Front-end',
-					idade: 32
-				},
-				{
-					nome: 'Matheus Silva',
-					cargo: 'Desenvolvedor Back-end',
-					idade: 18
-				},
-				{
-					nome: 'Henrique Lima',
-					cargo: 'Programador',
-					idade: 30
-				}
-			]
+			count: 0
 		};
+		this.increment = this.increment.bind(this);
+		this.decrement = this.decrement.bind(this);
+	}
+	increment() {
+		this.setState({
+			count: this.state.count + 1
+		});
+	}
+	decrement() {
+		if (this.state.count <= 0) return;
+
+		this.setState({
+			count: this.state.count - 1
+		});
 	}
 	render() {
 		return (
 			<div>
-				{this.state.devs.map((dev) => {
-					return <Equipe nome={dev.nome} cargo={dev.cargo} idade={dev.idade} />;
-				})}
+				<h1>Contador</h1>
+				<Contador count={this.state.count} increment={this.increment} decrement={this.decrement} />
 			</div>
 		);
 	}
