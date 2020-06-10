@@ -1,32 +1,28 @@
 import React, { Component } from 'react';
-import Contador from './Contador';
+import Membro from './components/membro';
+import Button from './components/button';
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			count: 0
+			member: 'New Member'
 		};
-		this.increment = this.increment.bind(this);
-		this.decrement = this.decrement.bind(this);
+		this.welcome = this.welcome.bind(this);
+		this.clear = this.clear.bind(this)
 	}
-	increment() {
-		this.setState({
-			count: this.state.count + 1
-		});
+	welcome() {
+		this.setState({member: 'Daniel Silva'})
 	}
-	decrement() {
-		if (this.state.count <= 0) return;
-
-		this.setState({
-			count: this.state.count - 1
-		});
+	clear() {
+		this.setState({member: 'New Member'})
 	}
 	render() {
 		return (
 			<div>
-				<h1>Contador</h1>
-				<Contador count={this.state.count} increment={this.increment} decrement={this.decrement} />
+				<Membro member={this.state.member} />
+				<Button handleClick={this.welcome}>ENTRAR COMO DANIEL</Button>
+				<Button handleClick={this.clear}>LIMPAR</Button>
 			</div>
 		);
 	}
