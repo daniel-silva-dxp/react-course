@@ -6,23 +6,38 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			member: 'New Member'
+			member: 'New Member',
+			isLogged: false
 		};
-		this.welcome = this.welcome.bind(this);
-		this.clear = this.clear.bind(this)
+		this.login = this.login.bind(this);
+		this.logout = this.logout.bind(this);
 	}
-	welcome() {
-		this.setState({member: 'Daniel Silva'})
+	login() {
+		this.setState({
+			member: 'Daniel Silva',
+			isLogged: true
+		});
 	}
-	clear() {
-		this.setState({member: 'New Member'})
+	logout() {
+		this.setState({
+			member: 'New Member',
+			isLogged: false
+		});
 	}
 	render() {
 		return (
 			<div>
-				<Membro member={this.state.member} />
-				<Button handleClick={this.welcome}>ENTRAR COMO DANIEL</Button>
-				<Button handleClick={this.clear}>LIMPAR</Button>
+				{!this.state.isLogged ? (
+					<div>
+						<div>Welcome to the login</div>
+						<Button handleClick={this.login}>LOGIN</Button>
+					</div>
+				) : (
+					<div>
+						<Membro member={this.state.member} />
+						<Button handleClick={this.logout}>LOGOUT</Button>
+					</div>
+				)}
 			</div>
 		);
 	}
