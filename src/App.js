@@ -1,43 +1,32 @@
 import React, { Component } from 'react';
-import Membro from './components/membro';
-import Button from './components/button';
+import Feed from './components/feed';
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			member: 'New Member',
-			isLogged: false
+			feed: [
+				{ id: 1, username: 'Daniel Silva', curtidas: 10, comentarios: 8 },
+				{ id: 2, username: 'Flávia Silva', curtidas: 110, comentarios: 38 },
+				{ id: 3, username: 'Matheus Silva', curtidas: 210, comentarios: 18 },
+				{ id: 4, username: 'Fabiana Martins', curtidas: 11, comentarios: 2 }
+			]
 		};
-		this.login = this.login.bind(this);
-		this.logout = this.logout.bind(this);
 	}
-	login() {
-		this.setState({
-			member: 'Daniel Silva',
-			isLogged: true
-		});
-	}
-	logout() {
-		this.setState({
-			member: 'New Member',
-			isLogged: false
-		});
-	}
+
 	render() {
 		return (
 			<div>
-				{!this.state.isLogged ? (
-					<div>
-						<div>Welcome to the login</div>
-						<Button handleClick={this.login}>LOGIN</Button>
-					</div>
-				) : (
-					<div>
-						<Membro member={this.state.member} />
-						<Button handleClick={this.logout}>LOGOUT</Button>
-					</div>
-				)}
+				{this.state.feed.map((user) => {
+					return (
+						<Feed
+							key={user.username}
+							username={user.username}
+							curtidas={user.curtidas}
+							comentarios={user.comentarios}
+						/>
+					);
+				})}
 			</div>
 		);
 	}
