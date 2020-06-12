@@ -1,61 +1,42 @@
 import React, { Component } from 'react';
+import Ideia from './components/ideia';
 import Button from './components/button';
-import Form from './components/forms';
+import Text from './components/text-ideia';
 
+import './app.css';
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			newLogin: '',
-			newPassword: '',
-			user: {
-				login: 'daniel_dxp@outlook.com',
-				password: '#.su2020.#'
-			},
-			isLogged: false,
-			error: false
+			light: require('./assets/idea_two.png'),
+			ideia: ''
 		};
-		this.setLogin = this.setLogin.bind(this);
-		this.setPassword = this.setPassword.bind(this);
-		this.login = this.login.bind(this);
-		this.logout = this.logout.bind(this);
-	}
-	setLogin(e) {
-		this.setState({ newLogin: e.target.value });
-	}
-	setPassword(e) {
-		this.setState({ newPassword: e.target.value });
-	}
-	login(e) {
-		e.preventDefault();
-		if (this.state.newLogin !== this.state.user.login && this.state.newPassword !== this.state.user.password) {
-			return this.setState({ error: true });
-		}
+		this.ideias = [
+			'"A mente que se abre a uma nova idéia jamais voltará ao seu tamanho original."',
+			'"Se, a princípio, a ideia não é absurda, então não há esperança para ela."',
+			'"Sentir é criar. Sentir é pensar sem ideias, e por isso sentir é compreender, visto que o Universo não tem ideias."',
+			'"Ah! Não me diga que concorda comigo! Quando as pessoas concordam comigo, tenho sempre a impressão de que estou errado."',
+			'"Os ideais que iluminaram o meu caminho são a bondade, a beleza e a verdade."',
+			'"As ideias das pessoas são pedaços da sua felicidade."'
+		];
 
-		this.setState({ isLogged: true, error: false });
+		this.renderIdeia = this.renderIdeia.bind(this);
 	}
-	logout(e) {
-		e.preventDefault();
-		this.setState({ isLogged: false, error: false });
+
+	renderIdeia() {
+		const randomNumber = Math.floor(Math.random() * this.ideias.length);
+		this.setState({
+			ideia: this.ideias[randomNumber],
+			light: require('./assets/idea_one.png')
+		});
 	}
+
 	render() {
 		return (
-			<div>
-				{this.state.error && <small>Login ou Senha inválidos!</small>}
-				{this.state.isLogged ? (
-					<div>
-						<h1>Welcome Daniel Silva</h1>
-						<div>
-							<Button handleClick={this.logout}>SAIR</Button>
-						</div>
-					</div>
-				) : (
-					<Form
-						handleChangeLogin={this.setLogin}
-						handleChangePassw={this.setPassword}
-						handleClick={this.login}
-					/>
-				)}
+			<div className="container">
+				<Ideia imgUrl={this.state.light} />
+				<Button handleClick={this.renderIdeia}>Pensador | Ideia</Button>
+				<Text ideia={this.state.ideia} />
 			</div>
 		);
 	}
