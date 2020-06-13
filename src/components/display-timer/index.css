@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap');
+.title-timer {
+	font-family: 'Roboto Mono', monospace;
+	text-transform: uppercase;
+	color: #313541;
+	font-weight: 400;
+	margin-bottom: 0;
+}
+.wrapper-btn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+.timer {
+	font-size: 2em;
+	font-weight: 300;
+	letter-spacing: .1em;
+	color: #e4e4e3;
+	margin: 0;
+	padding: 10px;
+}
