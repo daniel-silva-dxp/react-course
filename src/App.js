@@ -1,42 +1,57 @@
 import React, { Component } from 'react';
-import Ideia from './components/ideia';
-import Button from './components/button';
-import Text from './components/text-ideia';
+import Display from './components/display-timer';
 
 import './app.css';
+
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			light: require('./assets/idea_two.png'),
-			ideia: ''
+			timer: '00:00:00',
+			workHours: 0
 		};
-		this.ideias = [
-			'"A mente que se abre a uma nova idéia jamais voltará ao seu tamanho original."',
-			'"Se, a princípio, a ideia não é absurda, então não há esperança para ela."',
-			'"Sentir é criar. Sentir é pensar sem ideias, e por isso sentir é compreender, visto que o Universo não tem ideias."',
-			'"Ah! Não me diga que concorda comigo! Quando as pessoas concordam comigo, tenho sempre a impressão de que estou errado."',
-			'"Os ideais que iluminaram o meu caminho são a bondade, a beleza e a verdade."',
-			'"As ideias das pessoas são pedaços da sua felicidade."'
-		];
-
-		this.renderIdeia = this.renderIdeia.bind(this);
+		this.timer = null;
+		this.play = this.play.bind(this);
+		this.pause = this.pause.bind(this);
+		this.reset = this.reset.bind(this);
 	}
-
-	renderIdeia() {
-		const randomNumber = Math.floor(Math.random() * this.ideias.length);
+	timeFormat(counter) {
+		let display = new Date(counter * 1000);
+		return display.toLocaleTimeString('pt-BR', {
+			hour12: false,
+			timeZone: 'UTC'
+		});
+	}
+	play() {
+		this.timer = setInterval(() => {
+			this.setState({
+				workHours: this.state.workHours + 1,
+				timer: this.timeFormat(this.state.workHours)
+			});
+		}, 1000);
+	}
+	pause() {
+		clearInterval(this.timer);
+	}
+	reset() {
+		clearInterval(this.timer);
 		this.setState({
-			ideia: this.ideias[randomNumber],
-			light: require('./assets/idea_one.png')
+			timer: '00:00:00',
+			workHours: 0
 		});
 	}
 
 	render() {
 		return (
 			<div className="container">
-				<Ideia imgUrl={this.state.light} />
-				<Button handleClick={this.renderIdeia}>Pensador | Ideia</Button>
-				<Text ideia={this.state.ideia} />
+				<div className="content text-align">
+					<Display
+						timer={this.state.timer}
+						handlePlay={this.play}
+						handlePuse={this.pause}
+						handleReset={this.reset}
+					/>
+				</div>
 			</div>
 		);
 	}
