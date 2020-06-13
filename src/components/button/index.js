@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const Button = ({ children, handleClick }) => {
+const Button = ({ children, handleClick, btnClass }) => {
 	return (
-		<button onClick={handleClick} className="btn btn-medium btn-color">
+		<button onClick={handleClick} className={btnClass}>
 			{children}
 		</button>
 	);

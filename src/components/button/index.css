@@ -33,3 +33,40 @@ button {
 	background: #fff;
 	color: #1e1e1e;
 }
+.button {
+	margin: 5px 10px;
+}
+.button.play {
+	width: 20px;
+	height: 20px;
+	border-style: solid;
+	border-width: 12px 0px 12px 20px;
+	border-width: 12px 0px 12px 20px;
+	border-color: transparent transparent transparent #fff;
+	-webkit-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+.button.pause {
+	width: 20px;
+	height: 20px;
+	border-style: solid;
+	border-style: double;
+	border-width: 0px 0px 0px 12px;
+	border-color: #fff;
+	-webkit-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+.button.reset {
+	width: 20px;
+	height: 20px;
+	background-color: #fff;
+	-webkit-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+.button.play:hover,
+.button.pause:hover {
+	border-color: transparent transparent transparent #313541;
+}
+.button.reset:hover {
+	background-color: #313541;
+}
