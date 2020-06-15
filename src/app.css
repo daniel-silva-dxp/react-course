@@ -4,15 +4,13 @@
 	justify-content: center;
 	align-items: center;
 }
-.content {
-	width: 600px;
-	max-width: 640px;
-	background: #c55686;
-	margin-top: 10vh;
-	padding: 20px;
-	border-radius: 3px;
+.container > header {
+	font-size: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 60px;
+	background: #fff;
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-}
-.content.text-align {
-	text-align: center;
 }
