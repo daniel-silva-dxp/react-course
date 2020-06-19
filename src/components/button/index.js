@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const Button = ({ children, handleClick, btnClass }) => {
+const Button = ({ children, handleClick, btnClass, method }) => {
 	return (
-		<button onClick={handleClick} className={btnClass}>
+		<button type={method} onClick={handleClick} className={btnClass}>
 			{children}
 		</button>
 	);
 };
 
 Button.propTypes = {
-	handleClick: PropTypes.func.isRequired
+	handleClick: PropTypes.func
 };
 
 export default Button;
